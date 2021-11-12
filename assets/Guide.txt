@@ -1,0 +1,15 @@
+Bienvenue dans teemo Simulator,
+
+Ceci est le guide du voyageur
+c'est pour aider les plus démunis d'entre nous.
+
+lexique: 
+-g = gold
+
+Premièrement, les combats;
+
+tuer un passant rapporte 300g
+tous les personnages ont l'attribut 'electrocute' qui multiplie leurs dégats à chaque trois attaques consécutives.
+Teemo à l'attribut blind, les passants ont une chance élevée de manquer leur attaque.
+Matante Gontrante à l'attribut massive, ses dégats sont proportionnels à sa vie.
+
