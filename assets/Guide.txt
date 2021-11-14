@@ -5,6 +5,7 @@ c'est pour aider les plus démunis d'entre nous.
 
 lexique: 
 -g = gold
+-shop = magasin
 
 Premièrement, les combats;
 
@@ -13,3 +14,12 @@ tous les personnages ont l'attribut 'electrocute' qui multiplie leurs dégats à
 Teemo à l'attribut blind, les passants ont une chance élevée de manquer leur attaque.
 Matante Gontrante à l'attribut massive, ses dégats sont proportionnels à sa vie.
 
+Deuxièmement, la shop;
+
+La première shop ne contient que 2 items
+- Doran's shield - récupère peut-être un point de vie chaque fois que tu te prends des dégâts
+- Doran's ring - augmente les dégats de base et les dégâts possibles
+
+La shop de la forêt contient 4 objets.
+
+-- Appuyez sur une touche pour quitter --

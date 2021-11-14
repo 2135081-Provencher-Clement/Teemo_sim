@@ -10,7 +10,7 @@ namespace teemo
         public int Degats { get; set; } = 2;
         public Passant()
         {
-            StreamReader reader = new StreamReader("name_bank.txt");
+            StreamReader reader = new StreamReader("assets\\name_bank.txt");
             Random rng = new Random();
             string choisi = null;
             int nombreVu = 0;

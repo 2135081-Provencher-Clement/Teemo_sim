@@ -14,7 +14,7 @@ namespace teemo
         */
         public void AfficherVoiceLine()
         {
-            StreamReader reader = new StreamReader("class\\voiceLines\\megagromp.txt");
+            StreamReader reader = new StreamReader("assets\\voiceLines\\megagromp.txt");
             Random rng = new Random();
             string choisi = null;
             int nombreVu = 0;
