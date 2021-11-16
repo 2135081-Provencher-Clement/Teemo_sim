@@ -48,7 +48,7 @@ namespace teemo
             while(newPassant.HP > 0 && main.Hp > 0)
             {
                 miss = rng.Next(1,7);
-                degats = rng.Next(main.MinDamage, main.MinDamage + 15);
+                degats = rng.Next(main.MinDamage, main.MinDamage + main.DamageRange);
                 if(main.Electrocute == 3)
                 {
                     degats *= main.ElectrocuteDamage;
@@ -114,7 +114,7 @@ namespace teemo
 
             while( main.Hp > 0 && gromp.Hp > 0 )
             {
-                degats = rng.Next(main.MinDamage, main.DamageRange);
+                degats = rng.Next(main.MinDamage, main.MinDamage + main.DamageRange);
                 if(main.Electrocute == 3)
                 {
                     degats *= main.ElectrocuteDamage;
@@ -185,7 +185,7 @@ namespace teemo
             {
                 megaGromp.AfficherVoiceLine();
 
-                degats = rng.Next(main.MinDamage, main.DamageRange);
+                degats = rng.Next(main.MinDamage + main.DamageRange);
                 if(main.Electrocute == 3)
                 {
                     degats *= main.ElectrocuteDamage;
@@ -487,11 +487,11 @@ namespace teemo
 
                 case "2":
                     main.Name = "Matante Gotrante";
-                    main.MinDamage = 4;
+                    main.MinDamage = 0;
                     main.DamageRange = 5;
-                    main.MaxHp = 200;
-                    main.Hp = 150;
-                    main.Sustain = 20;
+                    main.MaxHp = 150;
+                    main.Hp = 100;
+                    main.Sustain = 8;
                 break;
 
                 case "g":
