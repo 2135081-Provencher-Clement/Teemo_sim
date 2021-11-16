@@ -21,5 +21,8 @@ La première shop ne contient que 2 items
 - Doran's ring - augmente les dégats de base et les dégâts possibles
 
 La shop de la forêt contient 4 objets.
+- Luden's echo - augmente les dégats de base et les dégats potentiels
+- Electric trident - augmente les dégats de electrocute
+- Crown of the fallen
 
 -- Appuyez sur une touche pour quitter --
