@@ -24,7 +24,10 @@ namespace teemo
         public bool Etrident { get; set; } = false;
         public bool Cfallen { get; set; } = false;
         public bool Wchest { get; set; } = false;
-
+        public MainChar()
+        {
+            this.Choixpersonnage(this);
+        }
         /*
         *Check si le doran's shield (il faut l'avoir) proc et regen 1 hp si oui
         *
@@ -50,6 +53,55 @@ namespace teemo
             this.Hp += heal;
             else if(heal >= leeway)
             this.Hp += leeway;
+        }
+        /**
+        *Choix du personnage principal
+        *
+        *@param Mainchar à défénir selon le choix du perso
+        *@return MainChar avec les stats de son personnage approprié
+        */
+        private MainChar Choixpersonnage( MainChar main )
+        {
+            Console.Clear();
+
+            string entry = null;
+            Console.WriteLine("Bonjour, bienvenue dans teemo_simulator\nveuillez choisir votre personnage (Oui plusieurs personnages dans teemo_simulator)");
+            Console.WriteLine("\n\n1. Teemo, un classique\n2. Matante Gontrante\n3. TBA.");
+            Console.WriteLine("\nveuillez inscrire l'abréviation correspondant au personnage\nsi vous souhaitez consulter le guide, veuillez incrire <g>");
+
+            entry = Console.ReadLine();
+
+            switch(entry)
+            {
+                case "1":
+                    main.Name = "Teemo";
+                    main.MinDamage = 2;
+                    main.DamageRange = 10;
+                    main.MaxHp = 15;
+                    main.Hp = 10;
+                    main.Sustain = 4;
+                break;
+
+                case "2":
+                    main.Name = "Matante Gotrante";
+                    main.MinDamage = 0;
+                    main.DamageRange = 5;
+                    main.MaxHp = 150;
+                    main.Hp = 100;
+                    main.Sustain = 8;
+                break;
+
+                case "g":
+                    Program.Guide();
+                    Choixpersonnage(main);
+                break;
+
+                default:
+                    Choixpersonnage(main);
+                break;
+            }
+
+            return main;
         }
     }
 }
