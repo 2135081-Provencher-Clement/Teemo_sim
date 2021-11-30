@@ -14,6 +14,9 @@ namespace teemo
 
             Console.WriteLine($"\nVous êtes {main.Name}");
 
+            VillageEnFlames village = new VillageEnFlames();
+            village.ShopVillage(main);
+
             //Première shop
             foret.FirstShop(main);
             

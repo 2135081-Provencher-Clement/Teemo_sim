@@ -74,16 +74,16 @@ namespace teemo
             Console.WriteLine($"\n{main.Name} Bienvenue dans le shop de la forêt\nvoici l'inventaire:");
             //check d'inventaire
             if(this.Lecho == true)
-            Console.WriteLine("Luden's echo (800g) <le>");
+            Console.WriteLine("Luden's echo (800g) <le> un echo qui ne diminue, certains diront une boucle infini");
 
             if(this.Etrident == true)
-            Console.WriteLine("Electric trident (900g) <et>");
+            Console.WriteLine("Electric trident (900g) <et> ça pique un peu plus qu'un choc statique");
 
             if(this.Cfallen == true)
             Console.WriteLine("Crown of the fallen (100g) <cf> Celui ci me fait peur, débarassez-moi en je vous en prie...");
 
             if(this.Wchest == true)
-            Console.WriteLine("Winter chestpiece (1000g) <wc>");
+            Console.WriteLine("Winter chestpiece (1000g) <wc> ben quoi, il fait froid...");
             Console.WriteLine($"\nVous possédez {main.Gold}g, sélectionner l'abréviation de l'item indiqué, si vous ne voulez rien acheter <r>");
 
             achat = Console.ReadLine();

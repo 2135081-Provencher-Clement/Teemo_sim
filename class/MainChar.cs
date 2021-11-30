@@ -24,6 +24,10 @@ namespace teemo
         public bool Etrident { get; set; } = false;
         public bool Cfallen { get; set; } = false;
         public bool Wchest { get; set; } = false;
+        public bool WCoal { get; set; } = false;
+        public bool UFoetus { get; set; } = false;
+        public bool UNerve { get; set; } = false;
+        public bool MBook { get; set; } = false;
         public MainChar()
         {
             this.Choixpersonnage(this);
@@ -85,10 +89,10 @@ namespace teemo
                 case "2":
                     main.Name = "Matante Gotrante";
                     main.MinDamage = 0;
-                    main.DamageRange = 5;
+                    main.DamageRange = 7;
                     main.MaxHp = 150;
                     main.Hp = 100;
-                    main.Sustain = 8;
+                    main.Sustain = 10;
                 break;
 
                 case "g":
