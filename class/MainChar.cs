@@ -70,7 +70,7 @@ namespace teemo
 
             string entry = null;
             Console.WriteLine("Bonjour, bienvenue dans teemo_simulator\nveuillez choisir votre personnage (Oui plusieurs personnages dans teemo_simulator)");
-            Console.WriteLine("\n\n1. Teemo, un classique\n2. Matante Gontrante\n3. TBA.");
+            Console.WriteLine("\n\n1. Teemo Shroomslinger\n2. Matante Gontrante\n3. Florent Laurent");
             Console.WriteLine("\nveuillez inscrire l'abréviation correspondant au personnage\nsi vous souhaitez consulter le guide, veuillez incrire <g>");
 
             entry = Console.ReadLine();
@@ -78,7 +78,7 @@ namespace teemo
             switch(entry)
             {
                 case "1":
-                    main.Name = "Teemo";
+                    main.Name = "Teemo ShroomSlinger";
                     main.MinDamage = 2;
                     main.DamageRange = 10;
                     main.MaxHp = 15;
@@ -93,6 +93,15 @@ namespace teemo
                     main.MaxHp = 150;
                     main.Hp = 100;
                     main.Sustain = 10;
+                break;
+
+                case "3":
+                    main.Name = "Florent Laurent";
+                    main.MinDamage = 2;
+                    main.DamageRange = 7;
+                    main.MaxHp = 60;
+                    main.Hp = 50;
+                    main.Sustain = 6;
                 break;
 
                 case "g":

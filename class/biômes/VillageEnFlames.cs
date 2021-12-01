@@ -10,7 +10,7 @@ namespace teemo
         public bool UNerve { get; set; } = true;
         public bool MBook { get; set; } = true;
         /*
-        *Affiche le shop de la forêt où on peut acheter luden's echo, electric trident, crown of the fallen et winter chestpiece
+        *Affiche le shop du village en flames où tu peux acheter White Coal, Unsolicited foetus, USB-C to optic nerve adapter et Mac Book Crow
         *
         *@param Main character
         *@return Main character

@@ -11,8 +11,9 @@ Premièrement, les combats;
 
 tuer un passant rapporte 300g
 tous les personnages ont l'attribut 'electrocute' qui multiplie leurs dégats à chaque trois attaques consécutives.
-- Teemo à l'attribut 'blind', les passants ont une chance élevée de manquer leur attaque.
+- Teemo Shroomslinger à l'attribut 'blind', les passants ont une chance élevée de manquer leur attaque.
 - Matante Gontrante à l'attribut 'massive', ses dégats sont proportionnels à sa vie.
+- Florent Laurent à l'attribut 'money is power', ses dégats sont proportionnels à son argent et il obtient des bonus spéciaux de certains objets
 
 Deuxièmement, la shop;
 
@@ -24,6 +25,12 @@ La shop de la forêt contient 4 objets.
 - Luden's echo - augmente les dégats de base et les dégats potentiels
 - Electric trident - augmente les dégats de electrocute
 - Crown of the fallen - inflige 4 points de dégats et enlève toute la regénération de l'utilisateur
-- Winter chestpiece - augmente la vie maximum de 5 et la regénération de 1
+- Winter chestpiece - augmente la vie maximum et la regénération
+
+La shop du village en flames contient 4 objets.
+- White Coal - augmente les dégats de base et les dégats potentiels
+- Unsolicited foetus - augmente les dégats de electrocute
+- USB-C to optic nerve adapter - augmente la vie maximum et la regénération
+- Mac Book Crow - aucunes statistiques suplémentaires
 
 -- Appuyez sur une touche pour quitter --
