@@ -26,8 +26,9 @@ namespace teemo
                 foretFini = foret.MenuForet(main, rng);
             }
 
-            Console.WriteLine("Vous sortez de la forêt, enfin et vous tombez face à un village en flâmes\n\nCe genre de choses n'arrivent par hasard, que peut bien s'y cacher...\n(Appuyez sur une touche pour continuer)");
+            Console.WriteLine("\n\n\nVous sortez de la forêt, enfin et vous tombez face à un village en flâmes\n\nCe genre de choses n'arrivent par hasard, que peut bien s'y cacher...\n(Appuyez sur une touche pour continuer)");
             Console.ReadKey();
+            Console.Clear();
 
             main.CrownActivation();
 
