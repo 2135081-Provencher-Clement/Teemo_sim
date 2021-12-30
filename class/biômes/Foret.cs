@@ -178,7 +178,7 @@ namespace teemo
             switch(choix)
             {
                 case "1":
-                    if(main.PassantsTueForet == 4)
+                    if(this.PassantsTueForet == 4)
                     {
                         Console.Clear();
                         Console.WriteLine("Ça sent le crapeau ici...");
@@ -186,12 +186,12 @@ namespace teemo
                         main = this.EncounterPassant(main, rng);
                         this.PassantsTueForet++;
                     }
-                    else if(main.PassantsTueForet == 5)
+                    else if(this.PassantsTueForet == 5)
                     {
                         main = this.EncounterGromp(main, rng);
                         this.PassantsTueForet++;
                     }
-                    else if(main.PassantsTueForet == 8)
+                    else if(this.PassantsTueForet == 8)
                     {
                         Console.Clear();
                         Console.WriteLine("Ça sent le crapeau ici...");
@@ -199,7 +199,7 @@ namespace teemo
                         main = this.EncounterPassant(main, rng);
                         this.PassantsTueForet++;
                     }
-                    else if(main.PassantsTueForet == 9)
+                    else if(this.PassantsTueForet == 9)
                     {
                         main = this.EncounterMegaGromp(main, rng);
                         return true;
@@ -236,7 +236,6 @@ namespace teemo
         {
             int degats = 0;
             Passant newPassant = new Passant();
-            int miss = 0;
             
             Console.Clear();
 
@@ -244,29 +243,19 @@ namespace teemo
 
             while(newPassant.HP > 0 && main.Hp > 0)
             {
-                miss = rng.Next(1,7);
-                degats = rng.Next(main.MinDamage, main.MinDamage + main.DamageRange);
-                if(main.Electrocute == 3)
-                {
-                    degats *= main.ElectrocuteDamage;
-                    main.Electrocute = 0;
-                    Console.WriteLine("\nElectrocute proc--");
-                }
+                degats = main.DegatsAt();
+
                 Console.WriteLine($"\n{main.Name} attaque !");
                 Console.WriteLine($"\n{newPassant.Name} se prends {degats} points de dégats, il lui reste {newPassant.HP - degats} points de vie");
                 newPassant.HP -= degats;
-                if(miss < 4 && main.Name == "Teemo")
+
+                if(newPassant.HP > 0)
                 {
-                    Console.WriteLine($"\n{newPassant.Name} manque son attaque parce qu'il est blind");
+                    int dommagePassant = 0;
+                    dommagePassant = main.RecevoirAt(newPassant.Degats);
+                    Console.WriteLine($"\n{main.Name} se prends {dommagePassant} points de dégats\nil reste {main.Hp} points de vie à {main.Name}");
                 }
-                else if(newPassant.HP > 0)
-                {
-                    main.Hp -= newPassant.Degats;
-                    Console.WriteLine($"\n{newPassant.Name}, cette conne, à fait {newPassant.Degats} dégats à {main.Name} !\nil reste {main.Hp} points de vie à {main.Name}");
-                    
-                    main.DshieldProc();
-                }
-                main.Electrocute++;
+              
                 Console.ReadKey();
             }
 
@@ -286,9 +275,7 @@ namespace teemo
             else
             Console.WriteLine("Error 204");
 
-            main.HealUnlessMax(main.Sustain);
-            main.Electrocute = 1;
-            main.Souls++;
+            main.ActivationFinCombat(main);
 
             Console.ReadKey();
             return main;
@@ -311,33 +298,18 @@ namespace teemo
 
             while( main.Hp > 0 && gromp.Hp > 0 )
             {
-                degats = rng.Next(main.MinDamage, main.MinDamage + main.DamageRange);
-                if(main.Electrocute == 3)
-                {
-                    degats *= main.ElectrocuteDamage;
-                    main.Electrocute = 0;
-                    Console.WriteLine("\n-- Electrocute proc --");
-                }
+                degats = main.DegatsAt();
+
                 Console.WriteLine($"\n{main.Name} Attaque le gromp");
                 Console.WriteLine($"\nLe gromp se prends {degats} points de dégats\nil reste {gromp.Hp - degats} points de vie au gromp");
                 gromp.Hp -= degats;
-                if(gromp.AttackCooldown == 0 && gromp.Hp > 0 )
+
+                if(gromp.Hp > 0)
                 {
-                    main.Hp -= gromp.Damage;
-
-                    Console.WriteLine($"\nLe gromp attaque {main.Name} pour {gromp.Damage} points de dégats\nil reste {main.Hp} points de vie à {main.Name}");
-                    
-                    main.DshieldProc();
-
-                    gromp.AttackSpeed += 1;
-                    gromp.AttackCooldown = gromp.AttackSpeed - 1;
+                    int dommageGromp = 0;
+                    dommageGromp = main.RecevoirAt(gromp.Attaquer());
+                    Console.WriteLine($"Le gromp inflige {dommageGromp} points de dégats à {main.Name}");
                 }
-                else
-                gromp.AttackCooldown--;
-
-                Console.WriteLine("Le gromp est fatigué, il attaque de moins en moins vite");
-
-                main.Electrocute++;
                 Console.ReadKey();
             }
 
@@ -355,9 +327,7 @@ namespace teemo
             else
             Console.WriteLine("Error 204");
 
-            main.HealUnlessMax(main.Sustain);
-            main.Electrocute = 1;
-            main.Souls++;
+            main.ActivationFinCombat(main);
 
             Console.ReadKey();
             return main;
@@ -382,27 +352,22 @@ namespace teemo
             {
                 megaGromp.AfficherVoiceLine();
 
-                degats = rng.Next(main.MinDamage + main.DamageRange);
-                if(main.Electrocute == 3)
-                {
-                    degats *= main.ElectrocuteDamage;
-                    main.Electrocute = 0;
-                    Console.WriteLine("\nElectrocute proc--");
-                }
+                degats = main.DegatsAt();
+
                 Console.WriteLine($"\n{main.Name} Attaque MegaGromp");
                 Console.WriteLine($"\nMegaGromp se prends {degats} points de dégats, il est immunisé au blind\nil reste {megaGromp.Hp - degats} points de vie à megaGromp");
                 megaGromp.Hp -= degats;
 
-                main.Hp -= megaGromp.Damage;
+                if(megaGromp.Hp > 0)
+                {
+                    int megaGrompDamage = 0;
+                    megaGrompDamage = main.RecevoirAt(megaGromp.Damage);
 
-                Console.WriteLine($"\nLe megaGromp attaque {main.Name} pour {megaGromp.Damage} points de dégats\nil reste {main.Hp} points de vie à {main.Name}");
-                
-                main.DshieldProc();
-
-                Console.WriteLine("Le megaGromp est trop fort pour se fatiguer, ne penses pas qu'il va ralentir ses attaques !");
-
-                main.Electrocute++;
-                Console.ReadKey();
+                    Console.WriteLine($"\nLe megaGromp attaque {main.Name} pour {megaGrompDamage} points de dégats\nil reste {main.Hp} points de vie à {main.Name}");
+                    
+                    Console.WriteLine("\nLe megaGromp est trop fort pour se fatiguer, ne penses pas qu'il va ralentir ses attaques !");
+                    Console.ReadKey();
+                }
             }
 
             if(main.Hp <= 0)
@@ -419,9 +384,7 @@ namespace teemo
             else
             Console.WriteLine("Error 204");
 
-            main.HealUnlessMax(main.Sustain);
-            main.Electrocute = 1;
-            main.Souls++;
+            main.ActivationFinCombat(main);
 
             Console.ReadKey();
             return main;

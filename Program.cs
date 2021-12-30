@@ -11,11 +11,9 @@ namespace teemo
             Random rng = new Random();
             Foret foret = new Foret();
             bool foretFini = false;
+            bool villageFini = false;
 
             Console.WriteLine($"\nVous êtes {main.Name}");
-
-            VillageEnFlames village = new VillageEnFlames();
-            village.ShopVillage(main);
 
             //Première shop
             foret.FirstShop(main);
@@ -26,6 +24,17 @@ namespace teemo
             while(!foretFini)
             {
                 foretFini = foret.MenuForet(main, rng);
+            }
+
+            Console.WriteLine("Vous sortez de la forêt, enfin et vous tombez face à un village en flâmes\n\nCe genre de choses n'arrivent par hasard, que peut bien s'y cacher...\n(Appuyez sur une touche pour continuer)");
+            Console.ReadKey();
+
+            main.CrownActivation();
+
+            //Village en flâmes
+            while(!villageFini)
+            {
+
             }
         }
         /**

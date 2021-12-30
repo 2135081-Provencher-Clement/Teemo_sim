@@ -13,9 +13,9 @@ namespace teemo
         public int Electrocute { get; set; } = 1;
         public int ElectrocuteDamage { get; set; } = 2;
         public int Gold { get; set; } = 500;
-        public int PassantsTueForet { get; set; } = 0;
         public int Souls { get; set; } = 0;
         public int MentalHealth { get; set; } = 100;
+        public string Attribut { get; set; } = "traitless";
 
         //items
         public bool Dshield { get; set; } = false;
@@ -84,6 +84,7 @@ namespace teemo
                     main.MaxHp = 15;
                     main.Hp = 10;
                     main.Sustain = 4;
+                    main.Attribut = "blind";
                 break;
 
                 case "2":
@@ -93,6 +94,7 @@ namespace teemo
                     main.MaxHp = 150;
                     main.Hp = 100;
                     main.Sustain = 10;
+                    main.Attribut = "massive";
                 break;
 
                 case "3":
@@ -102,6 +104,7 @@ namespace teemo
                     main.MaxHp = 60;
                     main.Hp = 50;
                     main.Sustain = 6;
+                    main.Attribut = "money is power";
                 break;
 
                 case "g":
@@ -115,6 +118,98 @@ namespace teemo
             }
 
             return main;
+        }
+
+        /**
+        *Activations de fin de combat, sustain, rest et electrocute, souls++
+        *
+        *@param main
+        *@return main
+        */
+        public MainChar ActivationFinCombat(MainChar main)
+        {
+            main.HealUnlessMax(main.Sustain);
+            main.Electrocute = 1;
+            main.Souls++;
+
+            return main;
+        }
+
+        /**
+        *Générer les dégats en tenant compte des attributs
+        *
+        *@return int les dégats
+        */
+        public int DegatsAt()
+        {
+            int degats = 0;
+            Random rng = new Random();
+
+            degats = rng.Next(this.MinDamage, this.MinDamage + this.DamageRange);
+
+            
+
+            //massive
+            if(this.Attribut == "massive")
+            {
+                degats += this.Hp / 30;
+            }
+
+            //money is power
+            if(this.Attribut == "money is power")
+            {
+                degats += this.Gold / 150;
+                if(this.MBook)
+                degats += 16;
+            }
+
+            //electrocute
+            if(this.Electrocute == 3)
+            {
+                degats *= this.ElectrocuteDamage;
+                this.Electrocute = 0;
+                Console.WriteLine("\nElectrocute proc--");
+            }
+            this.Electrocute++;
+
+            
+            return degats;
+        }
+
+        /**
+        *Recoit les dégats en tenant compte des attributs
+        *
+        *@param int degats reçus
+        *@return int degats finaux infligés
+        */
+        public int RecevoirAt(int degats)
+        {
+            if(this.Attribut == "blind")
+            {
+                Random rng = new Random();
+                int miss = rng.Next(1, 7);
+
+                if(miss < 5)
+                {
+                    degats = 0;
+                }
+            }
+
+            this.Hp -= degats;
+            this.DshieldProc();
+            return degats;
+        }
+
+        /**
+        *Activation du pouvoir caché de crown of the fallen, +15 dégats
+        */
+        public void CrownActivation()
+        {
+            if(this.Cfallen == true)
+            {
+                this.MinDamage += 15;
+                Console.WriteLine("La couronne du déchus vous fais vous sentir plus puissant\n\npeut être était-ce un bon achat après tout...");
+            }
         }
     }
 }
